@@ -1,5 +1,4 @@
-# Jitsi
-Jitsi-install on Ubuntu 20.04
+# Jitsi - install on Ubuntu 20.04-LTS
 
 Required:
 
