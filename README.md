@@ -3,11 +3,11 @@ Jitsi-install on Ubuntu 20.04
 
 Required:
 
-Ubuntu 20.04 server
+* Ubuntu 20.04 server
 
-Public ip
+* Public ip
 
-Subdomain assigned to above ip, handy when using let's encrypt ;-)
+* Subdomain assigned to above ip, handy when using let's encrypt ;-)
 
 Update using TLS and add universe repo
 ```
@@ -17,7 +17,7 @@ apt-add-repository universe apt update
 ```
 Add public fqdn to hosts file
 
-Edit /etc/hosts to 127.0.0.1 localhost goto.prosa.dk
+Edit /etc/hosts to 127.0.0.1 localhost goto.domain.dk
 
 Get the Jitsi developers public signing key
 ```
@@ -28,11 +28,8 @@ echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jit
 ```
 Open and enable the firewall
 ```
-ufw allow 80/tcp 
-ufw allow 443/tcp 
-ufw allow 4443/tcp 
-ufw allow 22/tcp 
-ufw allow 10000/udp 
+ufw allow proto tcp from any to any port 22,80,443,4443
+ufw allow proto udp from any to any port 10000 
 ufw enable
 ```
 install Jitsi using stable branch from download.jitsi.org
@@ -47,15 +44,18 @@ Hattip to vultr.com (https://www.vultr.com/docs/install-jitsi-meet-on-ubuntu-20-
 apt install certbot sed -i 's/./certbot-auto/certbot/g' /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh 
 
 ln -s /usr/bin/certbot /usr/sbin/certbot 
+```
 
+Get a Let's encrypt certificate
+```
 /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
 ```
-Busy servers - edit /etc/systemd/system.conf
+Busy servers - consider editing /etc/systemd/system.conf
 
 Ensure following minimum settings:
 
-DefaultLimitNOFILE=65000
+- DefaultLimitNOFILE=65000
 
-DefaultLimitNPROC=65000
+- DefaultLimitNPROC=65000
 
-DefaultTasksMax=65000
+- DefaultTasksMax=65000
