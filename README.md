@@ -37,10 +37,15 @@ install Jitsi using stable branch from download.jitsi.org
 apt install jitsi-meet
 ```
 The Jitsi installer has a minor error in refering to certbot-auto - should be certbot
-HT to [vultr.com] (https://www.vultr.com/docs/install-jitsi-meet-on-ubuntu-20-04-lts)
+
+Hattip to vultr.com (https://www.vultr.com/docs/install-jitsi-meet-on-ubuntu-20-04-lts)
 
 ```
-apt install certbot sed -i 's/./certbot-auto/certbot/g' /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh ln -s /usr/bin/certbot /usr/sbin/certbot /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
+apt install certbot sed -i 's/./certbot-auto/certbot/g' /usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh 
+
+ln -s /usr/bin/certbot /usr/sbin/certbot 
+
+/usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
 ```
 Busy servers
 
